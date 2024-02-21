@@ -295,6 +295,12 @@ h6 {
   right: 0;
 }
 
+#heroin{
+  background-color: white;
+  width: 500px;
+  padding: 10px;
+}
+
 #hero h1 {
   margin: 0;
   font-size: 64px;
