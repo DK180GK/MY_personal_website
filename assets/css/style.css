@@ -406,6 +406,7 @@ section {
 .about .content h3 {
   font-weight: 700;
   font-size: 26px;
+  align-items: center;
   color: #728394;
 }
 
