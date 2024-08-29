@@ -5,6 +5,9 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+
+
 (function() {
   "use strict";
 
@@ -41,6 +44,7 @@
     el.addEventListener('scroll', listener)
   }
 
+
   /**
    * Navbar links active state on scroll
    */
@@ -70,6 +74,19 @@
       top: elementPos,
       behavior: 'smooth'
     })
+  }
+
+  window.onload = function() {
+    var largePicture = document.querySelector('.image-container')
+    
+    // Load large image
+    var imgLarge = new Image();
+    imgLarge.src = largePicture.dataset.large; 
+    imgLarge.onload = function () {
+      imgLarge.classList.add('loaded');  
+    };
+      imgLarge.classList.add('picture');
+    largePicture.appendChild(imgLarge);
   }
 
   /**
@@ -232,6 +249,7 @@
     }
   });
 
+
   /**
    * Testimonials slider
    */
@@ -268,3 +286,15 @@
   new PureCounter();
 
 })()
+
+const blurredImageDiv = document.querySelector(".blurred-img")
+const img = blurredImageDiv.querySelector("img")
+function loaded() {
+  blurredImageDiv.classList.add("loaded")
+}
+
+if (img.complete) {
+  loaded()
+} else {
+  img.addEventListener("load", loaded)
+}
