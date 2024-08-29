@@ -1229,3 +1229,17 @@ section {
 #footer .credits {
   font-size: 13px;
 }
+.Linktext{
+  font-family: sans-serif;
+  font-size: 18px;
+  animation: color-change 1s infinite;
+}
+
+@keyframes color-change {
+  0% { color: red; }
+  50% { color: blue; }
+  100% { color: red; }
+
+  
+  
+}

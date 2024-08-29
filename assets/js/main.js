@@ -216,6 +216,20 @@
 
   });
 
+  function showGallery(groupId) {
+    // Hide all galleries
+    var galleries = document.querySelectorAll('.gallery');
+    galleries.forEach(function(gallery) {
+        gallery.classList.remove('visible');
+    });
+
+    // Show the selected gallery
+    var selectedGallery = document.getElementById(groupId);
+    selectedGallery.classList.add('visible');
+}
+
+
+
   /**
    * Initiate portfolio lightbox 
    */
