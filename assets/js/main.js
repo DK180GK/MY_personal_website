@@ -37,6 +37,17 @@
     }
   }
 
+  
+
+// Call the function to display the age when the page loads
+
+
+
+
+
+
+
+
   /**
    * Easy on scroll event listener 
    */
