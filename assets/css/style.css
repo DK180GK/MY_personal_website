@@ -69,19 +69,22 @@ h6 {
   height: 40px;
   border-radius: 50px;
   transition: all 0.4s;
+  color: black;
 
-  animation: color-changes 1s infinite;
+  animation: color-changes 1.5s infinite;
 }
 
 @keyframes color-changes {
-  0% { background: red; }
-  50% { background: blue; }
-  100% { background: red; }
+  0% { background: rgb(255, 255, 255) }
+  0% {color: black;}
+  50% { background: rgb(255,78,47); }
+  50% { color:white; }
+  100% { background: rgb(0, 0, 0); }
 }
 
 .back-to-shop i {
   font-size: 18px;
-  color: #fff;
+  color: black;
   font-style: normal;
   line-height: 0;
 }
