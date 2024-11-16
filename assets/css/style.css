@@ -75,11 +75,12 @@ h6 {
 }
 
 @keyframes color-changes {
-  0% { background: rgb(255, 255, 255) }
+  0% { background: rgb(133, 133, 133) }
   0% {color: black;}
   50% { background: rgb(255,78,47); }
   50% { color:white; }
   100% { background: rgb(0, 0, 0); }
+  100% {background-color: rgb(149, 149, 149);}
 }
 
 .back-to-shop i {
