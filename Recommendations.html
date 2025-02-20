@@ -11,6 +11,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
+        
     
 header {
     display: flex;
@@ -54,7 +55,7 @@ header nav ul li a {
             margin-top: 20px;
         }
         .phone-card {
-            background: linear-gradient(to bottom, rgb(255,78,47), rgb(156, 76, 0));
+            background: linear-gradient(to bottom, rgb(255,78,47), rgb(224, 108, 13));
             padding: 15px;
             border-radius: 10px;
             text-align: center;
@@ -106,14 +107,48 @@ header nav ul li a {
             color: rgb(255,78,47);
             margin-top: 10px;
         }
+        .slider-container {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .slider-container label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .price-slider {
+            -webkit-appearance: none;
+            width: 80%;
+            height: 10px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ff4e2f, #ffae42);
+            outline: none;
+            opacity: 0.9;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .price-slider:hover {
+            opacity: 1;
+        }
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 78, 47, 0.8);
+            transition: 0.2s ease-in-out;
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">SmartRec</div>
+        <div class="logo">DeeKraze</div>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
+                <li><a href="index.html">Go back</a></li>
             </ul>
         </nav>
     </header>    <div class="container">
@@ -127,19 +162,12 @@ header nav ul li a {
             <button onclick="setCategory('Best Camera')">📷 Best Camera</button>
             <button onclick="setCategory('Best Performance')">⚡ Best Performance</button>
         </div>
-       
+       <a href="r.html"></a>
         <!-- Price Range Buttons -->
         <h3>Select Price Range</h3>
-        <div class="price-dropdown">
-            <select onchange="setPrice(this.value)">
-                <option value="0">Select Price</option>
-                <option value="30000">₹30k</option>
-                <option value="40000">₹40k</option>
-                <option value="50000">₹50k</option>
-                <option value="60000">₹60k</option>
-                <option value="80000">₹80k</option>
-                <option value="100000">₹100k</option>
-            </select>
+        <div class="slider-container">
+            <label for="priceRange">Price Range: <span id="priceValue">₹50,000</span></label>
+            <input type="range" id="priceRange" class="price-slider" min="30000" max="100000" step="10000" value="50000" oninput="updateFilters()">
         </div>
         
         
@@ -173,30 +201,7 @@ header nav ul li a {
         ];
 
         let selectedCategory = null;
-let selectedPrice = 50000;
-
-function setPrice(price) {
-    selectedPrice = parseInt(price);
-    updatePriceDropdown();
-}
-
-function clearPrice() {
-    selectedPrice = 0;
-    updatePriceDropdown();
-}
-
-function updatePriceDropdown() {
-    const selectElement = document.querySelector('.price-dropdown select');
-    const options = selectElement.querySelectorAll('option');
-
-    options.forEach(option => {
-        if (parseInt(option.value) === selectedPrice) {
-            option.selected = true;
-        } else {
-            option.selected = false;
-        }
-    });
-}
+        let selectedPrice = 50000;
 
         function displayPhones(list) {
             const phoneList = document.getElementById("phone-list");
@@ -205,8 +210,7 @@ function updatePriceDropdown() {
                 const phoneCard = `<div class='phone-card'>
                     <h2>${phone.name}</h2>
                     <img src="${phone.image}" alt="${phone.name}">
-
-                    <p class="price_text">Price: ₹${phone.price}</p>
+                    <p>Price: ₹${phone.price}</p>
                     <p>Processor: ${phone.processor}</p>
                     <p>Display: ${phone.display}</p>
                 </div>`;
@@ -217,75 +221,23 @@ function updatePriceDropdown() {
         function setCategory(category) {
             selectedCategory = category;
             updateFilters();
-            updateCategoryButtons();
-        }
-
-        function setPrice(price) {
-            selectedPrice = price;
-            updateFilters();
-            updatePriceButtons();
-        }
-
-        function clearCategory() {
-            selectedCategory = null;
-            updateFilters();
-            updateCategoryButtons();
-        }
-
-        function clearPrice() {
-            selectedPrice = null;
-            updateFilters();
-            updatePriceButtons();
         }
 
         function updateFilters() {
-            let filteredPhones = smartphones;
+            let priceSteps = [30000, 40000, 50000, 60000, 80000,100000];
+            let slider = document.getElementById("priceRange");
+            let closest = priceSteps.reduce((prev, curr) => Math.abs(curr - slider.value) < Math.abs(prev - slider.value) ? curr : prev);
+            selectedPrice = closest;
+            document.getElementById("priceValue").innerText = `₹${selectedPrice}`;
+            let filteredPhones = smartphones.filter(phone => phone.price == selectedPrice);
             if (selectedCategory) {
                 filteredPhones = filteredPhones.filter(phone => phone.category === selectedCategory);
-            }
-            if (selectedPrice) {
-                filteredPhones = filteredPhones.filter(phone => phone.price === selectedPrice);
             }
             displayPhones(filteredPhones);
         }
 
-        function updateCategoryButtons() {
-            const buttons = document.querySelectorAll('.category-buttons button');
-            buttons.forEach(button => {
-                if (button.textContent === selectedCategory) {
-                    button.classList.add('selected');
-                } else {
-                    button.classList.remove('selected');
-                }
-            });
-        }
-
-
-function setPrice(price) {
-    selectedPrice = parseInt(price);
-    updatePriceDropdown();
-}
-
-function clearPrice() {
-    selectedPrice = 0;
-    updatePriceDropdown();
-}
-
-function updatePriceDropdown() {
-    const selectElement = document.querySelector('.price-dropdown select');
-    const options = selectElement.querySelectorAll('option');
-
-    options.forEach(option => {
-        if (parseInt(option.value) === selectedPrice) {
-            option.selected = true;
-        } else {
-            option.selected = false;
-        }
-    });
-}
-
-
         displayPhones(smartphones);
+    </script>
     </script>
 </body>
 </html>
