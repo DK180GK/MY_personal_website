@@ -156,8 +156,8 @@ header nav ul li a {
         <h3>Last Updated on 20/02/25</h3>
 
         <div class="category-buttons">
-            <button onclick="setCategory('Best Overall Phone')">🏅 Best Overall</button>
-            <button onclick="setCategory('Best Camera Phone')">📷 Best Camera</button>
+            <button onclick="setCategory('Best Overall')">🏅 Best Overall</button>
+            <button onclick="setCategory('Best Camera')">📷 Best Camera</button>
             <button onclick="setCategory('Best Performance')">⚡ Best Performance</button>
         </div></a>
         <div class="slider-container">
@@ -192,7 +192,7 @@ header nav ul li a {
         ];
 
         let selectedCategory = null;
-        let selectedPrice = 50000;
+        let selectedPrice = null;
         function displayPhones(list) {
             const phoneList = document.getElementById("phone-list");
             phoneList.innerHTML = "";
