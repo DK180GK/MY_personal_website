@@ -84,7 +84,6 @@ header nav ul li a {
         .category-buttons button, .price-buttons button, .clear-button {
             background-color: rgb(255,78,47);
             color: white;
-            text-decoration: none;
             border: none;
             padding: 10px 15px;
             cursor: pointer;
@@ -94,9 +93,6 @@ header nav ul li a {
             justify-content: center;
             gap: 8px;
             font-size: 16px;
-        }
-        a{
-            text-decoration: none;
         }
         .price_text{
             font-weight:bolder ;
@@ -160,17 +156,13 @@ header nav ul li a {
         <h3>Last Updated on 20/02/25</h3>
 
         <div class="category-buttons">
-            <button><a href="Audio.html">TWS & Audio</a></button>
-        </div>
-
-        <div class="category-buttons">
-            <button onclick="setCategory('Best Overall')">🏅 Best Overall</button>
-            <button onclick="setCategory('Best Camera')">📷 Best Camera</button>
-            <button onclick="setCategory('Best Performance')">⚡ Best Performance</button>
+            <button onclick="setCategory('TWS')">🎧 TWS </button>
+            <!-- <button onclick="setCategory('Wired headset')">Wired Headphones</button>
+            <button onclick="setCategory('Speakers')">🔈 Speakers</button> -->
         </div></a>
         <div class="slider-container">
-            <label for="priceRange">Price Range: <span id="priceValue">₹50,000</span></label>
-            <input type="range" id="priceRange" class="price-slider" min="30000" max="100000" step="10000" value="50000" oninput="updateFilters()">
+            <label for="priceRange">Price Range: <span id="priceValue">₹1500</span></label>
+            <input type="range" id="priceRange" class="price-slider" min="1500" max="10000" step="500" value="1000" oninput="updateFilters()">
         </div></a>
         <div id="phone-list">
             <!-- Smartphone list will be dynamically added here -->
@@ -179,25 +171,13 @@ header nav ul li a {
 
     <script>
         const smartphones = [
-            {name: "OnePlus Nord 4", category: "Best Overall", price: 30000, processor: "Snapdragon 7+ Gen 3", display: "6.74 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord4.jpg", link: "https://amzn.to/3XboZDX"}, 
-            {name: "Realme 14 Pro+", category: "Best Camera", price: 30000, processor: "Snapdragon 7s Gen 3", display: "6.83 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/realme-14pro-plus.jpg", link: "https://amzn.to/4b4lepL"},
-            {name: "Xiaomi Poco F6", category: "Best Performance", price: 30000, processor: "Snapdragon 8s Gen 3", display: "6.67 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-f6.jpg", link: "https://amzn.to/3QqczUZ"},
-            {name: "OnePlus 12R", category: "Best Overall", price: 40000, processor: "Snapdragon 8 Gen 2", display: "6.78 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/oneplus-12r.jpg", link: "https://amzn.to/434y0m3"},
-            {name: "Realme GT 6", category: "Best Camera", price: 40000, processor: "Snapdragon 8s Gen 3", display: "6.78 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/realme-gt6.jpg", link: "https://amzn.to/4hMg83S"},
-            {name: "iQOO Neo9 Pro", category: "Best Performance", price: 40000, processor: "Snapdragon 8 Gen 2", display: "6.78 inches, 144Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/vivo-neo9.jpg", link: "https://amzn.to/3D8h7w3"},
-            {name: "OnePlus 13R", category: "Best Overall", price: 50000, processor: "Snapdragon 8 Gen 3", display: "6.78 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/oneplus-13r.jpg", link: "https://amzn.to/3CXNeyB"},
-            {name: "Samsung Galaxy S24 FE", category: "Best Camera", price: 50000, processor: "Exynos 2400e", display: "6.7 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s24-fe-r1.jpg", link: "https://amzn.to/4k8s2H2"},
-            {name: "iQOO 12", category: "Best Performance", price: 50000, processor: "Snapdragon 8 Gen 3", display: "6.78 inches, 144Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/vivo-iqoo12.jpg", link: "https://amzn.to/4355kJv"},
-            {name: "iQOO 13", category: "Best Overall", price: 60000, processor: "Snapdragon 8 Elite", display: "6.82 inches, 144Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/vivo-iqoo-13.jpg", link: "https://amzn.to/4b9d9Qw"},
-            {name: "vivo X100", category: "Best Camera", price: 60000, processor: "Dimensity 9300", display: "6.78 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/vivo-x100.jpg", link: "https://amzn.to/412ZVAh"},
-            {name: "iQOO 13", category: "Best Performance", price: 60000, processor: "Snapdragon 8 Elite", display: "6.82 inches, 144Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/vivo-iqoo-13.jpg", link: "https://amzn.to/4b9d9Qw"},
-            {name: "Samsung Galaxy S23 Ultra", category: "Best Overall", price: 80000, processor: "Snapdragon 8 Gen 2", display: "6.8 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s23-ultra-5g.jpg", link: "https://amzn.to/412ZVAh"},
-            {name: "vivo X200", category: "Best Camera", price: 80000, processor: "Dimensity 9400", display: "6.67 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/vivo-x200.jpg", link: "https://amzn.to/4hMhdbW"},
-            {name: "iQOO 13", category: "Best Performance", price: 80000, processor: "Snapdragon 8 Elite", display: "6.82 inches, 144Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/vivo-iqoo-13.jpg", link: "https://amzn.to/4b9d9Qw"},
-            {name: "Samsung Galaxy S25 Ultra", category: "Best Overall", price: 100000, processor: "Snapdragon 8 Elite", display: "6.9 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s25-ultra-sm-s938.jpg", link: "https://amzn.to/3QqJgl6"},
-            {name: "vivo X200 Pro", category: "Best Camera", price: 100000, processor: "Dimensity 9400", display: "6.78 inches, 120Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/vivo-x200-pro.jpg", link: "https://amzn.to/4hMhdbW"},
-            {name: "Asus ROG Phone 9", category: "Best Performance", price: 100000, processor: "Snapdragon 8 Elite", display: "6.78 inches, 185Hz", image: "https://fdn2.gsmarena.com/vv/bigpic/asus-rog-phone-9.jpg", link: "https://mx2games.com/product/asus-rog-9-pro-mobile-phone-16gb-512gb-phantom-black-ai2501-3b011-hk-imported/"}
-        ];
+            {name: "realme Buds T110", category: "TWS", price: 1500, image: "https://www.sathya.store/img/product/JO9DRT9qOpa8gUaZ.png", link: "https://amzn.to/3X87SCW"}, 
+            {name: "OnePlus Nord Buds 3", category: "TWS", price: 2000, processor: "Snapdragon 7s Gen 3", display: "6.83 inches, 120Hz", image: "https://image01-in.oneplus.net/media/202407/10/b5626e8b0599e41c9f57e8fd889f78ca.png", link: "https://amzn.to/4b4lepL"},
+            {name: "JBL Vibe Beam", category: "TWS", price: 2500, processor: "Snapdragon 8s Gen 3", display: "6.67 inches, 120Hz", image: "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwf7193de4/1.JBL_Wave_Vibe_Beam_Product%20Image_Hero_Black.png?sw=300&sh=300", link: "https://amzn.to/3EJcadz"},
+            {name: "OnePlus 12R", category: "TWS", price: 3000, processor: "Snapdragon 8 Gen 2", display: "6.78 inches, 120Hz", image: "https://image01-in.oneplus.net/media/202407/10/ee9d6e311be1a3a33c8f0c33fe16c8fd.png", link: "https://amzn.to/4gJkOGo"},
+            {name: "OPPO Enco Air3 Pro", category: "TWS", price: 5000, processor: "Snapdragon 8s Gen 3", display: "6.78 inches, 120Hz", image: "https://www.oppo.com/content/dam/oppo/common/mkt/v2-2/enco-air3-pro-en/listpage/enco-air3-pro-600x600-white.png", link: "https://amzn.to/3EFsyf9"},
+            {name: "Samsung Galaxy Buds2 Pro", category: "Best Performance", price: 10000, processor: "Snapdragon 8 Gen 2", display: "6.78 inches, 144Hz", image: "https://media.croma.com/image/upload/v1669124567/Croma%20Assets/Entertainment/Headphones%20and%20Earphones/Images/260677_0_zxcelh.png", link: "https://amzn.to/4365XTq"},
+           ];
 
         let selectedCategory = null;
         let selectedPrice = null;
@@ -208,10 +188,7 @@ header nav ul li a {
                 const phoneCard = `<a href='${phone.link ? phone.link : "#"}' target='_blank' style='text-decoration: none; color: inherit;'><div class='phone-card'>
                     <h2>${phone.name}</h2>
                     <img src="${phone.image}" alt="${phone.name}">
-                    <p class="price_text">Price: ₹${phone.price}</p>
-                    <p>Processor: ${phone.processor}</p>
-                    <p>Display: ${phone.display}</p>
-                </div></a>`;
+                    <p class="price_text">Price: ₹${phone.price}</p>`;
                 phoneList.innerHTML += phoneCard;
             });
         }
@@ -222,7 +199,7 @@ header nav ul li a {
         }
 
         function updateFilters() {
-            let priceSteps = [30000, 40000, 50000, 60000, 80000,100000];
+            let priceSteps = [ 1500, 2000, 2500, 3000, 5000,10000];
             let slider = document.getElementById("priceRange");
             let closest = priceSteps.reduce((prev, curr) => Math.abs(curr - slider.value) < Math.abs(prev - slider.value) ? curr : prev);
             selectedPrice = closest;
