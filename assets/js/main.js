@@ -340,22 +340,29 @@ if (img.complete) {
   img.addEventListener("load", loaded)
 }
 
-// Replace the existing handleImageLoading function with this:
+// Update the image loading function
 function handleImageLoading() {
-  const portfolioWraps = document.querySelectorAll('.portfolio-wrap');
+  const portfolioImages = document.querySelectorAll('.portfolio-img-container img');
   
-  portfolioWraps.forEach(wrap => {
-    const img = wrap.querySelector('img');
+  portfolioImages.forEach(img => {
+    const container = img.parentElement;
     
-    if (img.complete) {
-      wrap.classList.add('loaded');
-    } else {
-      img.onload = function() {
-        wrap.classList.add('loaded');
-      };
+    function setLoaded() {
+      container.classList.add('loaded');
     }
+
+    if (img.complete) {
+      setLoaded();
+    } else {
+      img.addEventListener('load', setLoaded);
+    }
+
+    img.addEventListener('error', () => {
+      console.error('Error loading image:', img.src);
+      container.classList.add('error');
+    });
   });
 }
 
-// Add this to your existing window load event
-window.addEventListener('load', handleImageLoading);
+// Call the function when DOM is ready
+document.addEventListener('DOMContentLoaded', handleImageLoading);
