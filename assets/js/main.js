@@ -339,3 +339,23 @@ if (img.complete) {
 } else {
   img.addEventListener("load", loaded)
 }
+
+// Replace the existing handleImageLoading function with this:
+function handleImageLoading() {
+  const portfolioWraps = document.querySelectorAll('.portfolio-wrap');
+  
+  portfolioWraps.forEach(wrap => {
+    const img = wrap.querySelector('img');
+    
+    if (img.complete) {
+      wrap.classList.add('loaded');
+    } else {
+      img.onload = function() {
+        wrap.classList.add('loaded');
+      };
+    }
+  });
+}
+
+// Add this to your existing window load event
+window.addEventListener('load', handleImageLoading);
